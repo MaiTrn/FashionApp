@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { LogBox, StyleSheet, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import * as Font from "expo-font";
 import firebase from "firebase";
@@ -61,6 +61,7 @@ export default class App extends React.Component {
       }
     });
     this._loadFontsAsync();
+    LogBox.ignoreLogs(["Setting a timer"]);
   }
 
   render() {
@@ -72,6 +73,7 @@ export default class App extends React.Component {
         </View>
       );
     }
+
     return (
       <Provider store={store}>
         <StatusBar style="dark" />

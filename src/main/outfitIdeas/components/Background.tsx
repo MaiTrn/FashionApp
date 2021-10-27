@@ -4,6 +4,8 @@ import Svg, { Path } from "react-native-svg";
 
 import { BG, COLORS, SIZES } from "../../../../constants";
 
+const viewBox = { width: 392, height: 150 };
+
 const Background = () => {
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -19,129 +21,62 @@ const Background = () => {
         style={{
           flex: 1,
           justifyContent: "center",
-          height: SIZES.height / 3 + SIZES.borderRadius.xl * 2,
+          height: SIZES.height / 3,
           backgroundColor: COLORS.white,
         }}
       >
-        <View
+        {/* top */}
+        <Svg
+          width={SIZES.width}
+          height={(150 * SIZES.width) / viewBox.width}
+          viewBox={[0, 0, viewBox.width, viewBox.height].join(" ")}
           style={{
             position: "absolute",
-            top: -10,
-            height: SIZES.borderRadius.xl * 2,
-            width: SIZES.width,
+            top: 0,
+            right: 0,
             zIndex: 10,
           }}
         >
-          <View
-            style={{
-              left: 0,
-              height: SIZES.borderRadius.xl,
-              backgroundColor: COLORS.white,
-              width: SIZES.width - SIZES.borderRadius.xl,
-            }}
+          <Path
+            d="M 0 0 H 392 A 75 75 0 0 1 317 75 H 75 A 75 75 0 0 0 0 150"
+            fill={COLORS.white}
           />
-          <Svg
-            height={SIZES.borderRadius.xl}
-            width={SIZES.borderRadius.xl}
-            style={{
-              position: "absolute",
-              right: 0,
-              zIndex: 10,
-            }}
-            viewBox="0 0 1 1"
-          >
-            <Path
-              d="M 0 1 A 1 1, 0, 0, 0, 1 0 L 0 0"
-              // put your path here: M 278 83 C 294 73 394 101 395 -11 V 99 H 278 Z"
-              fill={COLORS.white}
-            />
-          </Svg>
-          <Svg
-            height={SIZES.borderRadius.xl}
-            width={SIZES.borderRadius.xl}
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              zIndex: 10,
-            }}
-            viewBox="0 0 1 1"
-          >
-            <Path
-              d="M 0 1 A 1 1, 0, 0, 1, 1 0 L 0 0"
-              // put your path here: M 278 83 C 294 73 394 101 395 -11 V 99 H 278 Z"
-              fill={COLORS.white}
-            />
-          </Svg>
-        </View>
+        </Svg>
+
         <Image
-          source={BG.source}
+          source={BG.source.full}
           style={{
             ...StyleSheet.absoluteFillObject,
             width: undefined,
             height: undefined,
           }}
         />
-        <View
+        {/* bot */}
+        <Svg
+          width={SIZES.width}
+          height={(150 * SIZES.width) / viewBox.width}
+          viewBox={[0, 0, viewBox.width, viewBox.height].join(" ")}
           style={{
             position: "absolute",
-            bottom: -2,
-            height: SIZES.borderRadius.xl * 2,
-            width: SIZES.width,
+            bottom: -5,
+            right: -1,
             zIndex: 10,
           }}
         >
-          <Svg
-            height={SIZES.borderRadius.xl}
-            width={SIZES.borderRadius.xl}
-            style={{
-              position: "absolute",
-              top: 0,
-              right: 0,
-            }}
-            viewBox="0 0 1 1"
-          >
-            <Path
-              d="M 0 1 A 1 1, 0, 0, 0, 1 0 L 1 1"
-              // put your path here: M 278 83 C 294 73 394 101 395 -11 V 99 H 278 Z"
-              fill={COLORS.secondary}
-            />
-          </Svg>
-          <Svg
-            height={SIZES.borderRadius.xl}
-            width={SIZES.borderRadius.xl}
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-            }}
-            viewBox="0 0 1 1"
-          >
-            <Path
-              d="M 0 1 A 1 1, 0, 0, 1, 1 0 L 1 1"
-              // put your path here: M 278 83 C 294 73 394 101 395 -11 V 99 H 278 Z"
-              fill={COLORS.secondary}
-            />
-          </Svg>
-          <View
-            style={{
-              position: "absolute",
-              right: 0,
-              bottom: 0,
-              height: SIZES.borderRadius.xl,
-              backgroundColor: COLORS.secondary,
-              width: SIZES.width - SIZES.borderRadius.xl,
-            }}
+          <Path
+            d="M 392 0 A 75 75 0 0 1 317 75 H 75 A 75 75 0 0 0 0 150 H 392"
+            fill={COLORS.secondary}
           />
-        </View>
+        </Svg>
       </View>
+
       <View
         style={{
           height: SIZES.height / 3 - SIZES.borderRadius.xl,
           backgroundColor: COLORS.secondary,
           overflow: "hidden",
         }}
-      />
+      ></View>
     </View>
   );
 };

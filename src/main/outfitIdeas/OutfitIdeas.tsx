@@ -5,7 +5,7 @@ import { useTiming } from "react-native-redash";
 import { COLORS } from "../../../constants";
 import { Header } from "../../components";
 import { HomeNavigationProps } from "../../components/Navigation";
-import { cards } from "../../components/DummyData";
+import { cards } from "../../components/Data";
 
 import Background from "./components/Background";
 import Card from "./Card";
@@ -23,7 +23,6 @@ const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "shopping-outline", onPress: () => console.log("left") }}
         label="Outfit Ideas"
-        dark={false}
       />
       {/* <Categories /> */}
       <View style={{ flex: 1 }}>

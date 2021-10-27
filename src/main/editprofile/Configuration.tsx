@@ -2,7 +2,7 @@ import React from "react";
 import { Text, ScrollView, StyleSheet } from "react-native";
 
 import { COLORS, SIZES, FONTS } from "../../../constants";
-import { outfitTypes, sizes, colors, brands } from "../../components/DummyData";
+import { outfitTypes, sizes, colors, brands } from "../../components/Data";
 
 import RenderCheckbox from "./components/RenderCheckbox";
 import RenderRadioBox from "./components/RenderRadioBox";

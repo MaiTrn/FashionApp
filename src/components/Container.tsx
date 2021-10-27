@@ -8,7 +8,8 @@ import { COLORS, SIZES, BG } from "../../constants";
 interface ContainerProps {
   children: ReactNode;
   footer: ReactNode;
-  pattern: 0 | 1 | 2;
+  pattern: 0 | 1 | 2 | 3;
+  // 0: login, 1 : register, 2: forgot password, 3: account created
 }
 
 const Container = ({ children, footer, pattern }: ContainerProps) => {
@@ -25,13 +26,15 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
             style={{
               height: BG.resize * 0.6,
               overflow: "hidden",
-              borderBottomLeftRadius: pattern === 0 ? SIZES.borderRadius.xl : 0,
+              borderBottomLeftRadius:
+                pattern === 0 || pattern === 3 ? SIZES.borderRadius.xl : 0,
               borderBottomRightRadius:
                 pattern === 1 ? SIZES.borderRadius.xl : 0,
+              backgroundColor: COLORS.secondary,
             }}
           >
             <Image
-              source={BG.source}
+              source={BG.source[pattern]}
               style={{
                 width: SIZES.width,
                 height: BG.resize,
@@ -46,7 +49,7 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
           }}
         >
           <Image
-            source={BG.source}
+            source={BG.source[pattern]}
             style={{
               ...StyleSheet.absoluteFillObject,
               width: SIZES.width,
@@ -66,7 +69,9 @@ const Container = ({ children, footer, pattern }: ContainerProps) => {
               borderTopLeftRadius:
                 pattern === 1 || pattern === 2 ? SIZES.borderRadius.xl : 0,
               borderTopRightRadius:
-                pattern === 0 || pattern === 2 ? SIZES.borderRadius.xl : 0,
+                pattern === 0 || pattern === 2 || pattern === 3
+                  ? SIZES.borderRadius.xl
+                  : 0,
             }}
           >
             {children}

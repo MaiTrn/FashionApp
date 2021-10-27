@@ -9,7 +9,7 @@ import {
 import { Header } from "../../components";
 import { COLORS, SIZES } from "../../../constants";
 import { HomeNavigationProps } from "../../components/Navigation";
-import { defaultOutfits } from "../../components/DummyData";
+import { defaultOutfits } from "../../components/Data";
 
 import Footer from "./components/Footer";
 import Outfit from "./Outfit";
@@ -43,7 +43,6 @@ const FavoriteOutfits = ({
           onPress: () => setEdit((prev) => !prev),
         }}
         label="Favorite Outfits"
-        dark={false}
       />
       <View style={{ flex: 1 }}>
         <ScrollView

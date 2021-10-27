@@ -11,7 +11,7 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import { connect } from "react-redux";
 
 import { COLORS, FONTS, SIZES } from "../../../constants";
-import { genders } from "../../components/DummyData";
+import { genders } from "../../components/Data";
 import { fetchUserData } from "../../redux/actions";
 
 import RenderCheckbox from "./components/RenderCheckbox";

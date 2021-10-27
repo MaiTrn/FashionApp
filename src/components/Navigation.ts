@@ -36,5 +36,5 @@ export type HomeRoutes = {
   FavoriteOutfits: undefined;
   TransactionHistory: undefined;
   NotificationsSettings: undefined;
-  Logout: undefined;
+  Cart: undefined;
 };

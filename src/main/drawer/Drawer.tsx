@@ -10,12 +10,16 @@ import Svg, { Path } from "react-native-svg";
 import { Header } from "../../components";
 import { COLORS, FONTS, SIZES, BG } from "../../../constants";
 import { fetchUserData } from "../../redux/actions";
-import { menu } from "../../components/DummyData";
+import { menu } from "../../components/Data";
 
 import DrawerItem from "./DrawerItem";
 
 export const DRAWER_WIDTH = SIZES.width * 0.8;
-export const DRAWER_BORDER = SIZES.borderRadius.xl * 0.8;
+
+const viewBox = {
+  width: 314,
+  height: 120,
+};
 
 interface DrawerProps {
   fetchUserData: () => void;
@@ -33,6 +37,7 @@ const Drawer = (props: DrawerProps) => {
   }, []);
   const isDrawerOpen = useDrawerStatus() === "open";
   // another way of using navigation: const navigation = useNavigation()
+
   return (
     <View style={{ flex: 1 }}>
       <StatusBar style={isDrawerOpen ? "light" : "dark"} />
@@ -52,7 +57,7 @@ const Drawer = (props: DrawerProps) => {
             }}
             right={{
               icon: "shopping-outline",
-              onPress: () => console.log("right"),
+              onPress: () => props.navigation.navigate("Cart"),
             }}
             label="my profile"
             dark
@@ -117,50 +122,30 @@ const Drawer = (props: DrawerProps) => {
       {/* Footer */}
       <View
         style={{
-          backgroundColor: COLORS.white,
+          backgroundColor: COLORS.secondary,
           width: DRAWER_WIDTH,
-          height: BG.resize * 0.5,
+          height: BG.resize * 0.8,
           overflow: "hidden",
         }}
       >
         <Svg
-          height={DRAWER_BORDER}
-          width={DRAWER_BORDER}
+          width={DRAWER_WIDTH}
+          height={(120 * DRAWER_WIDTH) / viewBox.width}
           style={{
             position: "absolute",
             right: 0,
             zIndex: 10,
           }}
-          viewBox="0 0 1 1"
+          viewBox={[0, 0, viewBox.width, viewBox.height].join(" ")}
         >
-          <Path d="M 0 1 A 1 1, 0, 0, 0, 1 0 L 0 0" fill={COLORS.white} />
+          <Path
+            d="M 0 0 H 314 A 60 60 0 0 1 254 60 H 60 A 60 60 0 0 0 0 120"
+            fill={COLORS.white}
+          />
         </Svg>
-        <View
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            height: DRAWER_BORDER,
-            backgroundColor: COLORS.white,
-            width: DRAWER_WIDTH - DRAWER_BORDER,
-            zIndex: 10,
-          }}
-        />
-        <Svg
-          height={DRAWER_BORDER}
-          width={DRAWER_BORDER}
-          style={{
-            position: "absolute",
-            top: DRAWER_BORDER,
-            left: 0,
-            zIndex: 10,
-          }}
-          viewBox="0 0 1 1"
-        >
-          <Path d="M 0 1 A 1 1, 0, 0, 1, 1 0 L 0 0" fill={COLORS.white} />
-        </Svg>
+
         <Image
-          source={BG.source}
+          source={BG.source[3]}
           style={{
             ...StyleSheet.absoluteFillObject,
             width: DRAWER_WIDTH,

@@ -9,7 +9,7 @@ import OutfitIdeas from "./outfitIdeas";
 import FavoriteOutfits from "./favoriteoutfits";
 import NotificationsSettings from "./notificationssettings";
 import TransactionHistory from "./transactionhistory";
-import Logout from "./logout";
+import Cart from "./cart";
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
 const HomeNavigator = () => {
@@ -30,7 +30,7 @@ const HomeNavigator = () => {
         name="NotificationsSettings"
         component={NotificationsSettings}
       />
-      <Drawer.Screen name="Logout" component={Logout} />
+      <Drawer.Screen name="Cart" component={Cart} />
     </Drawer.Navigator>
   );
 };

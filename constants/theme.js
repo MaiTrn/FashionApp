@@ -5,14 +5,12 @@ export const COLORS = {
   // colors
   black: "#1E1F20",
   white: "#FFFFFF",
-
   primary: "#2CB9B0",
   secondary: "#0C0D34",
+  darkGray: "#8A8D90",
+  lightGray: "#FAFAFA",
+  gray: "#F4F0EF",
   danger: "#FF0058",
-  orange: "#FE5E33",
-  yellow: "#FFC641",
-  pink: "#FF87A2",
-  violet: "#442CB9",
 
   month: {
     1: "#251DB1",
@@ -36,11 +34,8 @@ export const COLORS = {
     lightOrange: "#FFE4D9",
     lightPink: "#FFDDDD",
     lightGray: "#F2F2F2",
+    lightYellow: "#FFF7C0",
   },
-  darkGray: "#8A8D90",
-  lightGray: "#FAFAFA",
-  gray: "#F4F0EF",
-
   button: { primary: "#2CB9B0", default: "rgba(12, 13, 52, 0.05)" },
   text: { primary: "rgba(12, 13, 52, 0.7)", small: "rgba(12,13,52,0.5)" },
 };
@@ -104,7 +99,7 @@ export const FONTS = {
     fontSize: SIZES.h2,
     lineHeight: 30,
   },
-  //title 3
+  //??
   h3: {
     fontFamily: "SFProText-Semibold",
     fontSize: SIZES.h3,
@@ -151,9 +146,15 @@ export const FONTS = {
 };
 
 export const BG = {
-  source: require("../assets/pictures/bg.png"),
-  source2: require("../assets/pictures/bg2.jpg"),
-  resize: (SIZES.width * 2400) / 3200,
+  source: {
+    0: require("../assets/pictures/bg0.png"),
+    1: require("../assets/pictures/bg1.png"),
+    2: require("../assets/pictures/bg2.png"),
+    3: require("../assets/pictures/bg3.png"),
+    4: require("../assets/pictures/bg4.png"),
+    full: require("../assets/pictures/bg.png"),
+  },
+  resize: (SIZES.width * 12) / 24,
   aspectRatio: 4,
 };
 const appTheme = { COLORS, SIZES, FONTS, BG };

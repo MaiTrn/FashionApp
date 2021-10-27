@@ -6,7 +6,7 @@ import { COLORS } from "../../../../constants";
 
 const OutfitControls = () => {
   return (
-    <View style={{ backgroundColor: COLORS.white, ...styles.container }}>
+    <View style={styles.container}>
       <TouchableOpacity
         onPress={() => console.log("back")}
         style={{
@@ -60,6 +60,7 @@ export default OutfitControls;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: COLORS.white,
     flexDirection: "row",
     width: 200,
     height: 60,

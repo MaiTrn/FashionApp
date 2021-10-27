@@ -5,7 +5,7 @@ import { mix, useTransition } from "react-native-redash/lib/module/v1";
 
 import { COLORS, SIZES, FONTS } from "../../../constants";
 import { IconCircle } from "../../components";
-import { tabs } from "../../components/DummyData";
+import { tabs } from "../../components/Data";
 
 interface childrenProps {
   children: ReactNode;

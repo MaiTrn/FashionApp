@@ -49,7 +49,7 @@ const Register = ({ navigation }: AuthNavigationProps<"Register">) => {
                 .firestore()
                 .collection("usersData")
                 .doc(firebase.auth().currentUser?.uid)
-                .set({ upperCaseName, email });
+                .set({ name: upperCaseName, email });
               isMounted = false;
               navigation.navigate("AccountCreated");
             }

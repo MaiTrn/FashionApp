@@ -35,7 +35,7 @@ const AccountCreated = ({
   navigation,
 }: AuthNavigationProps<"AccountCreated">) => {
   return (
-    <Container pattern={0} footer={<Footer onPress={() => navigation.pop()} />}>
+    <Container pattern={3} footer={<Footer onPress={() => navigation.pop()} />}>
       <View
         style={{
           justifyContent: "center",

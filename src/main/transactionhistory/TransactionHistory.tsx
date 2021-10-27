@@ -5,9 +5,8 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Header } from "../../components";
 import { COLORS, FONTS, SIZES } from "../../../constants";
 import { HomeNavigationProps } from "../../components/Navigation";
-import { transactionData } from "../../components/DummyData";
+import { transactionData } from "../../components/Data";
 
-import TopCurve from "./components/TopCurve";
 import Footer from "./components/Footer";
 import Graph from "./Graph";
 import Transaction from "./Transaction";
@@ -20,13 +19,16 @@ const TransactionHistory = ({
 }: HomeNavigationProps<"TransactionHistory">) => {
   const footerHeight = SIZES.width / 4;
 
+  function totalValue(total, cur) {
+    return total + cur.value;
+  }
+
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.white }}>
       <Header
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "share", onPress: () => console.log("left") }}
         label="Transaction History"
-        dark={false}
       />
       <View
         style={{
@@ -52,7 +54,7 @@ const TransactionHistory = ({
               TOTAL SPENT
             </Text>
             <Text style={{ color: COLORS.text.primary, ...FONTS.h1 }}>
-              $619,19
+              ${transactionData.reduce(totalValue, 0).toFixed(2)}
             </Text>
           </View>
           <TouchableOpacity
@@ -85,7 +87,6 @@ const TransactionHistory = ({
           })}
         </ScrollView>
       </View>
-      <TopCurve footerHeight={footerHeight} />
       <View
         style={{
           position: "absolute",
@@ -95,7 +96,7 @@ const TransactionHistory = ({
           height: footerHeight,
         }}
       >
-        <Footer />
+        <Footer footerHeight={footerHeight} />
       </View>
     </View>
   );

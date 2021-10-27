@@ -260,6 +260,41 @@ const notifOptions = [
   },
 ];
 
+const cart = [
+  {
+    id: 1,
+    color: COLORS.slide.lightYellow,
+    size: ["M", "L"],
+    name: "Short Sleeved Organic Top",
+    price: "29.99",
+    quantity: 2,
+  },
+  {
+    id: 2,
+    color: COLORS.slide.lightPink,
+    size: ["S", "S"],
+    name: "Black Denim Jeans",
+    price: "59.98",
+    quantity: 2,
+  },
+  {
+    id: 3,
+    color: COLORS.slide.lightGreen,
+    size: ["S"],
+    name: "Oversized Hoodie",
+    price: "25.00",
+    quantity: 1,
+  },
+  {
+    id: 4,
+    color: COLORS.slide.lightBlue,
+    size: ["L", "M", "XL"],
+    name: "Long Sleeved Top",
+    price: "29.99",
+    quantity: 3,
+  },
+];
+
 export {
   slides,
   menu,
@@ -274,4 +309,5 @@ export {
   brands,
   genders,
   notifOptions,
+  cart,
 };

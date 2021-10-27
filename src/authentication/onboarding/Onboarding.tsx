@@ -10,7 +10,7 @@ import Animated, {
 
 import { SIZES, COLORS } from "../../../constants";
 import { Dot } from "../../components";
-import { slides } from "../../components/DummyData";
+import { slides } from "../../components/Data";
 import { AuthNavigationProps } from "../../components/Navigation";
 
 import Slide from "./Slide";

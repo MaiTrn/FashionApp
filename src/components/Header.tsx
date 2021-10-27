@@ -17,6 +17,7 @@ interface HeaderProps {
   right?: { icon: string; onPress: () => void };
   label: string;
   dark: boolean;
+  contentColor?: string;
 }
 
 const StatusBarHeight = Platform.select({
@@ -25,9 +26,14 @@ const StatusBarHeight = Platform.select({
   default: 20,
 });
 
-const Header = ({ left, right, label, dark }: HeaderProps) => {
-  const color = dark ? COLORS.white : COLORS.text.primary;
-  const backgroundColor = dark ? COLORS.secondary : COLORS.lightGray;
+const Header = ({ left, right, label, dark, contentColor }: HeaderProps) => {
+  const color =
+    contentColor === undefined
+      ? dark
+        ? COLORS.white
+        : COLORS.text.primary
+      : contentColor;
+  const backgroundColor = dark ? COLORS.secondary : undefined;
   return (
     <View
       style={{
@@ -59,6 +65,10 @@ const Header = ({ left, right, label, dark }: HeaderProps) => {
       )}
     </View>
   );
+};
+
+Header.defaultProps = {
+  dark: false,
 };
 
 export default Header;

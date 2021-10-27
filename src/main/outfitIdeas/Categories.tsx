@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView } from "react-native";
 
-import { categories } from "../../components/DummyData";
+import { categories } from "../../components/Data";
 
 import Category from "./components/Category";
 
