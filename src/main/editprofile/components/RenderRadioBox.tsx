@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
+import { ScrollView as GestureHandlerScrollView } from "react-native-gesture-handler";
 import { COLORS, FONTS, SIZES } from "../../../../constants";
 
 export interface RadioBox {
@@ -24,7 +24,11 @@ const RenderRadioBox = ({ options, pattern }: RadioBoxProps) => {
   const [selectedIDs, setSelectedIDs] = useState([]);
 
   return (
-    <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+    <GestureHandlerScrollView
+      showsHorizontalScrollIndicator={false}
+      horizontal
+      nestedScrollEnabled={true}
+    >
       {options.map((option) => {
         const index = selectedIDs.indexOf(option.id);
         const isSelected = index !== -1;
@@ -104,7 +108,7 @@ const RenderRadioBox = ({ options, pattern }: RadioBoxProps) => {
           </TouchableOpacity>
         );
       })}
-    </ScrollView>
+    </GestureHandlerScrollView>
   );
 };
 

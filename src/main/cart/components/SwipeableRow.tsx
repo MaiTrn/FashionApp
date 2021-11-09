@@ -7,6 +7,7 @@ import {
   Touchable,
 } from "react-native";
 import Animated, {
+  runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
@@ -58,7 +59,11 @@ const SwipeableRow = ({
         },
         (isFinished) => {
           if (dest === finalDest && isFinished) {
-            height.value = withTiming(0, { duration: 250 }, () => deleteItem());
+            height.value = withTiming(0, { duration: 250 }, (isFinished) => {
+              if (isFinished) {
+                //  runOnJS(deleteItem)();
+              }
+            });
           }
         }
       );

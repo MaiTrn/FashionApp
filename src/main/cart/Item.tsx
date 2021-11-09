@@ -7,7 +7,7 @@ interface itemProps {
   color: string;
   size: string[];
   name: string;
-  price: string;
+  price: number;
   quantity: number;
   onDelete: () => void;
 }

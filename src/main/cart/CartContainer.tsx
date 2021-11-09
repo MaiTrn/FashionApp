@@ -1,79 +1,111 @@
-import React, { ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import { View, ScrollView } from "react-native";
-import { useTransition } from "react-native-redash/lib/module/v1";
+import { PanGestureHandler } from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
+import { clamp, snapPoint } from "react-native-redash";
 import { COLORS, SIZES } from "../../../constants";
 
-interface CartContianerProps {
+interface CartContainerProps {
   children: ReactNode;
+  CheckoutComponent: FC<{ minHeight: number; totalPrice: number }>;
+  totalPrice: number;
 }
 
-const mainContentHeight = (650 * SIZES.width) / 375;
-const snapHeight = (500 * SIZES.width) / 375;
+const height = (680 * SIZES.width) / 375;
+const minHeight = (230 * SIZES.width) / 375;
 
-const CartContainer = ({ children }: CartContianerProps) => {
-  const [index, setIndex] = React.useState(0);
-  const transition = useTransition(index);
+const snapPoints = [-(height - minHeight), 0];
+
+const CartContainer = ({
+  children,
+  CheckoutComponent,
+  totalPrice,
+}: CartContainerProps) => {
+  const translateY = useSharedValue(0);
+  const onGestureEvent = useAnimatedGestureHandler<{ y: number }>({
+    onStart: (_, ctx) => {
+      ctx.y = translateY.value;
+    },
+    onActive: ({ translationY }, ctx) => {
+      translateY.value = clamp(
+        translationY + ctx.y,
+        snapPoints[0],
+        snapPoints[1]
+      );
+    },
+    onEnd: ({ velocityY }) => {
+      const dest = snapPoint(translateY.value, velocityY, snapPoints);
+      translateY.value = withSpring(dest, { overshootClamping: true });
+    },
+  });
+
+  const style = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
 
   return (
-    <View style={{ flex: 1, backgroundColor: COLORS.secondary }}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        snapToInterval={snapHeight}
-        decelerationRate="normal"
-        contentContainerStyle={{
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            width: SIZES.width,
-            height: mainContentHeight,
-            backgroundColor: COLORS.white,
-            borderBottomLeftRadius: SIZES.borderRadius.xl,
-            borderBottomRightRadius: SIZES.borderRadius.xl,
-          }}
+    <View style={{ flex: 1 }}>
+      <CheckoutComponent minHeight={minHeight} totalPrice={totalPrice} />
+      <PanGestureHandler onGestureEvent={onGestureEvent}>
+        <Animated.View
+          style={[
+            {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              height,
+              backgroundColor: COLORS.white,
+              borderBottomLeftRadius: SIZES.borderRadius.xl,
+              borderBottomRightRadius: SIZES.borderRadius.xl,
+            },
+            style,
+          ]}
         >
           {children}
           <View
             style={{
               position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 40,
-              alignSelf: "center",
-              justifyContent: "flex-end",
-              alignItems: "center",
-              zIndex: 10,
+              top: SIZES.height / 2,
+              right: 5,
+              width: 5,
+              height: 60,
+              backgroundColor: COLORS.gray,
+              borderRadius: SIZES.borderRadius.xl,
+              marginVertical: SIZES.spacing.m,
             }}
-          >
-            <View
-              style={{
-                width: 60,
-                height: 5,
-                backgroundColor: COLORS.gray,
-                borderRadius: SIZES.borderRadius.xl,
-                marginVertical: SIZES.spacing.m,
-              }}
-            />
-          </View>
-        </View>
-      </ScrollView>
-      {/* <Animated.View
-          style={{
-            flex: 1,
-            width: SIZES.width * numberOfTabs,
-            flexDirection: "row",
-            transform: [{ translateX: multiply(-SIZES.width, transition) }],
-          }}
-        >
-          {Children.map(children, (child, i) => (
-            <View key={i} style={{ flex: 1, width: SIZES.width }}>
-              {child}
-            </View>
-          ))}
-        </Animated.View> */}
+          />
+          <View
+            style={{
+              position: "absolute",
+              bottom: SIZES.spacing.m,
+              left: SIZES.width / 2 - 30,
+              width: 60,
+              height: 5,
+              backgroundColor: COLORS.gray,
+              borderRadius: SIZES.borderRadius.xl,
+            }}
+          />
+          <View
+            style={{
+              position: "absolute",
+              bottom: 0,
+              height: 40,
+              left: SIZES.borderRadius.xl,
+              right: SIZES.borderRadius.xl,
+              zIndex: 50,
+              //workaround to render scroll
+              backgroundColor: COLORS.gray,
+              opacity: 0.1,
+            }}
+          ></View>
+        </Animated.View>
+      </PanGestureHandler>
     </View>
   );
 };

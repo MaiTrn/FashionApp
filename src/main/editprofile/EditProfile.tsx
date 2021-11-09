@@ -26,6 +26,11 @@ const EditProfile = (props: ProfileProps) => {
     props.fetchUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onEnd = () => {
+    props.navigation.navigate("OutfitIdeas");
+  };
+
   return (
     <View style={{ flex: 1 }}>
       {/* Header */}

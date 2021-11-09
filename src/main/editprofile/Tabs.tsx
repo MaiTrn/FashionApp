@@ -1,17 +1,18 @@
-import React, { Children, ReactNode } from "react";
+import React, { Children, ReactNode, useCallback } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Animated, { multiply } from "react-native-reanimated";
 import { mix, useTransition } from "react-native-redash/lib/module/v1";
 
 import { COLORS, SIZES, FONTS } from "../../../constants";
-import { IconCircle } from "../../components";
 import { tabs } from "../../components/Data";
+import { Slider } from "../../components";
 
 interface childrenProps {
   children: ReactNode;
+  onEnd: () => void;
 }
 
-const Tabs = ({ children }: childrenProps) => {
+const Tabs = ({ children, onEnd }: childrenProps) => {
   const [index, setIndex] = React.useState(0);
   const transition = useTransition(index);
   const translateX = mix(
@@ -46,14 +47,7 @@ const Tabs = ({ children }: childrenProps) => {
         ))}
         <Animated.View
           style={{
-            position: "absolute",
-            alignSelf: "center",
-            backgroundColor: COLORS.primary,
-            bottom: 0,
-            left: 0,
-            width: 8,
-            height: 8,
-            borderRadius: 4,
+            ...styles.dot,
             transform: [{ translateX }],
           }}
         />
@@ -64,6 +58,7 @@ const Tabs = ({ children }: childrenProps) => {
         showsHorizontalScrollIndicator={false}
         snapToInterval={SIZES.width}
         decelerationRate="fast"
+        onScroll={onScroll}
         scrollEventThrottle={16}
         contentContainerStyle={{ width: SIZES.width * tabs.length }}
       > */}
@@ -80,34 +75,18 @@ const Tabs = ({ children }: childrenProps) => {
           </View>
         ))}
       </Animated.View>
-      <TouchableOpacity
+      <View
         style={{
           position: "absolute",
           bottom: 0,
-          flexDirection: "row",
-          marginVertical: SIZES.spacing.s,
-          width: 280,
-          height: 50,
-          borderRadius: SIZES.borderRadius.xl,
-          backgroundColor: COLORS.button.primary,
-          justifyContent: "flex-start",
+          right: 0,
+          left: 0,
+          justifyContent: "center",
           alignItems: "center",
-          alignSelf: "center",
-          ...styles.shadow,
         }}
       >
-        <View style={{ marginHorizontal: 5 }}>
-          <IconCircle
-            name="gesture-swipe"
-            color={COLORS.button.primary}
-            backgroundColor={COLORS.white}
-            size={42}
-          />
-        </View>
-        <Text style={{ color: COLORS.white, marginLeft: SIZES.spacing.l }}>
-          Swipe to save changes
-        </Text>
-      </TouchableOpacity>
+        <Slider onEnd={onEnd} text="Swipe to save changes" />
+      </View>
     </View>
   );
 };
@@ -115,6 +94,16 @@ const Tabs = ({ children }: childrenProps) => {
 export default Tabs;
 
 const styles = StyleSheet.create({
+  dot: {
+    position: "absolute",
+    alignSelf: "center",
+    backgroundColor: COLORS.primary,
+    bottom: 0,
+    left: 0,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
   button: {
     flex: 1,
     padding: SIZES.spacing.m,

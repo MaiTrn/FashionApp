@@ -4,7 +4,7 @@ import { COLORS } from "../../constants";
 import { DrawerItemProps } from "../main/drawer/DrawerItem";
 import { DataPoint } from "../main/transactionhistory/Graph";
 
-const slides = [
+export const slides = [
   {
     title: "Relaxed",
     subTitle: "Find Your Outfits",
@@ -35,13 +35,13 @@ const slides = [
   },
 ];
 
-interface menuProps {
+export interface menuProps {
   icon: string;
   name: string;
   color: string;
 }
 
-const menu: DrawerItemProps[] = [
+export const menu: DrawerItemProps[] = [
   {
     icon: "flash",
     name: "Outfit Ideas",
@@ -86,7 +86,7 @@ const menu: DrawerItemProps[] = [
   },
 ];
 
-const defaultOutfits = [
+export const defaultOutfits = [
   {
     id: 1,
     color: "#BFEAF5",
@@ -136,7 +136,7 @@ const defaultOutfits = [
     selected: false,
   },
 ];
-const categories = [
+export const categories = [
   {
     id: "newin",
     title: "New In",
@@ -164,7 +164,7 @@ const categories = [
   },
 ];
 
-const transactionData: DataPoint[] = [
+export const transactionData: DataPoint[] = [
   {
     id: 245669,
     date: new Date("2019-09-01").getTime(),
@@ -187,31 +187,31 @@ const transactionData: DataPoint[] = [
   },
 ];
 
-const cards = [
+export const cards = [
   { index: 3, source: require("../../assets/pictures/3.png") },
   { index: 2, source: require("../../assets/pictures/2.png") },
   { index: 1, source: require("../../assets/pictures/1.png") },
   { index: 0, source: require("../../assets/pictures/0.png") },
 ];
 
-const tabs = [
+export const tabs = [
   { id: 1, name: "Configuration" },
   { id: 2, name: "Personal Info" },
 ];
 
-const outfitTypes = [
+export const outfitTypes = [
   { id: 1, name: "Men" },
   { id: 2, name: "Women" },
   { id: 3, name: "Both" },
 ];
-const sizes = [
+export const sizes = [
   { id: 1, name: "S" },
   { id: 2, name: "M" },
   { id: 3, name: "L" },
   { id: 4, name: "XL" },
   { id: 5, name: "XXL" },
 ];
-const colors = [
+export const colors = [
   { id: 1, name: COLORS.month[1] },
   { id: 2, name: COLORS.month[2] },
   { id: 3, name: COLORS.month[3] },
@@ -225,7 +225,7 @@ const colors = [
   { id: 11, name: COLORS.month[11] },
   { id: 12, name: COLORS.month[12] },
 ];
-const brands = [
+export const brands = [
   { id: 1, name: "Adidas" },
   { id: 2, name: "Nike" },
   { id: 3, name: "Converse" },
@@ -236,12 +236,12 @@ const brands = [
   { id: 8, name: "See all" },
 ];
 
-const genders = [
+export const genders = [
   { id: 1, name: "Male" },
   { id: 2, name: "Female" },
 ];
 
-const notifOptions = [
+export const notifOptions = [
   {
     title: "Outfit Ideas",
     description: "Receive daily notifications",
@@ -260,13 +260,13 @@ const notifOptions = [
   },
 ];
 
-const cart = [
+export const cart = [
   {
     id: 1,
     color: COLORS.slide.lightYellow,
     size: ["M", "L"],
     name: "Short Sleeved Organic Top",
-    price: "29.99",
+    price: 29.99,
     quantity: 2,
   },
   {
@@ -274,7 +274,7 @@ const cart = [
     color: COLORS.slide.lightPink,
     size: ["S", "S"],
     name: "Black Denim Jeans",
-    price: "59.98",
+    price: 59.98,
     quantity: 2,
   },
   {
@@ -282,7 +282,7 @@ const cart = [
     color: COLORS.slide.lightGreen,
     size: ["S"],
     name: "Oversized Hoodie",
-    price: "25.00",
+    price: 25.0,
     quantity: 1,
   },
   {
@@ -290,24 +290,50 @@ const cart = [
     color: COLORS.slide.lightBlue,
     size: ["L", "M", "XL"],
     name: "Long Sleeved Top",
-    price: "29.99",
+    price: 29.99,
+    quantity: 3,
+  },
+  {
+    id: 5,
+    color: COLORS.slide.lightPink,
+    size: ["S", "S"],
+    name: "Black Denim Jeans",
+    price: 59.98,
+    quantity: 2,
+  },
+  {
+    id: 6,
+    color: COLORS.slide.lightGreen,
+    size: ["S"],
+    name: "Oversized Hoodie",
+    price: 25.0,
+    quantity: 1,
+  },
+  {
+    id: 7,
+    color: COLORS.slide.lightBlue,
+    size: ["L", "M", "XL"],
+    name: "Long Sleeved Top",
+    price: 29.99,
     quantity: 3,
   },
 ];
+export enum CardType {
+  VISA,
+  MASTERCARD,
+}
 
-export {
-  slides,
-  menu,
-  defaultOutfits,
-  categories,
-  cards,
-  transactionData,
-  tabs,
-  outfitTypes,
-  sizes,
-  colors,
-  brands,
-  genders,
-  notifOptions,
-  cart,
-};
+export const paymentCards = [
+  {
+    id: 0,
+    type: CardType.VISA,
+    lastDigits: 5467,
+    expiration: "05/24",
+  },
+  {
+    id: 1,
+    type: CardType.MASTERCARD,
+    lastDigits: 2620,
+    expiration: "05/24",
+  },
+];
