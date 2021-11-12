@@ -71,14 +71,17 @@ const SwipeableRow = ({
   });
 
   const style = useAnimatedStyle(() => ({
-    height: height.value,
     backgroundColor: COLORS.white,
+    overflow: "hidden",
+    height: height.value,
     transform: [{ translateX: translateX.value }],
   }));
   const deleteStyle = useAnimatedStyle(() => ({
+    overflow: "hidden",
     opacity: translateX.value > 0 ? 1 : 0,
   }));
   const editStyle = useAnimatedStyle(() => ({
+    overflow: "hidden",
     opacity: translateX.value < 0 ? 1 : 0,
   }));
 

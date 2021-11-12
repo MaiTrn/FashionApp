@@ -18,7 +18,7 @@ import rootReducer from "./src/redux/reducers";
 // import { LoadAssets } from "./src/components";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBs7pFiS8cfqMDykqKv-b21Gjh1Oi8lqJM",
+  apiKey: "AIzaSyBs7pFiS8cfqMDykqKv-b21Gjh1Oi8lqJM", //fix
   authDomain: "fashion-f5b92.firebaseapp.com",
   projectId: "fashion-f5b92",
   storageBucket: "fashion-f5b92.appspot.com",

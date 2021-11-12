@@ -32,7 +32,6 @@ const Cart = ({ navigation }: CartNavigationProps<"MainScreen">) => {
       totalPrice={totalPrice}
       onEnd={onEnd}
     >
-      <StatusBar style="light" />
       <View
         style={{
           backgroundColor: COLORS.primary,
