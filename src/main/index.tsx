@@ -10,6 +10,8 @@ import FavoriteOutfits from "./favoriteoutfits";
 import NotificationsSettings from "./notificationssettings";
 import TransactionHistory from "./transactionhistory";
 import Cart from "./cart";
+import ProfileSaved from "./confirmation/ProfileSaved";
+import PurchaseConfirmed from "./confirmation/PurchaseConfirmed";
 
 const Drawer = createDrawerNavigator<HomeRoutes>();
 const HomeNavigator = () => {
@@ -31,6 +33,8 @@ const HomeNavigator = () => {
         component={NotificationsSettings}
       />
       <Drawer.Screen name="Cart" component={Cart} />
+      <Drawer.Screen name="ProfileSaved" component={ProfileSaved} />
+      <Drawer.Screen name="PurchaseConfirmed" component={PurchaseConfirmed} />
     </Drawer.Navigator>
   );
 };

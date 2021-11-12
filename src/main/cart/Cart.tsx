@@ -22,8 +22,16 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
   }
   const totalPrice = items.reduce(totalValue, 0);
 
+  const onEnd = () => {
+    return navigation.navigate("OutfitIdeas");
+  };
+
   return (
-    <CartContainer CheckoutComponent={Checkout} totalPrice={totalPrice} onEnd={() =>navigation.navigate("PurchaseConfirmed")}>
+    <CartContainer
+      CheckoutComponent={Checkout}
+      totalPrice={totalPrice}
+      onEnd={onEnd}
+    >
       <View
         style={{
           backgroundColor: COLORS.primary,

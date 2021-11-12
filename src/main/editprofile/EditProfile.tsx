@@ -28,7 +28,7 @@ const EditProfile = (props: ProfileProps) => {
   }, []);
 
   const onEnd = () => {
-    props.navigation.navigate("OutfitIdeas");
+    return props.navigation.navigate("OutfitIdeas");
   };
 
   return (
@@ -101,7 +101,7 @@ const EditProfile = (props: ProfileProps) => {
           </View>
 
           {/* Tabs */}
-          <Tabs>
+          <Tabs onEnd={onEnd}>
             <Configuration />
             <PersonalInfo />
           </Tabs>
