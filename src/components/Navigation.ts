@@ -37,4 +37,6 @@ export type HomeRoutes = {
   TransactionHistory: undefined;
   NotificationsSettings: undefined;
   Cart: undefined;
+  ProfileSaved: undefined;
+  PurchaseConfirmed: undefined;
 };

@@ -8,7 +8,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
-import { COLORS, SIZES } from "../../constants";
+import { COLORS, FONTS, SIZES } from "../../constants";
 import IconCircle from "./IconCircle";
 
 interface sliderProps {
@@ -21,6 +21,7 @@ const endPoint = 280 - 52; //total with of view - size of icon - margin
 const Slider = ({ onEnd, text }: sliderProps) => {
   const translateX = useSharedValue(0);
   const onSave = useCallback(() => {
+    translateX.value = 0;
     onEnd();
   }, [onEnd]);
 
@@ -41,8 +42,7 @@ const Slider = ({ onEnd, text }: sliderProps) => {
         { overshootClamping: true },
         (isFinished) => {
           if (dest === endPoint && isFinished) {
-            //runOnJS(onSave)();
-            console.log("Save");
+            runOnJS(onSave)();
           }
         }
       );
@@ -58,7 +58,7 @@ const Slider = ({ onEnd, text }: sliderProps) => {
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View style={[{ marginHorizontal: 5 }, sliderStyle]}>
           <IconCircle
-            name="gesture-swipe"
+            name="gesture-swipe-right"
             color={COLORS.button.primary}
             backgroundColor={COLORS.white}
             size={42}
@@ -72,7 +72,7 @@ const Slider = ({ onEnd, text }: sliderProps) => {
           justifyContent: "center",
         }}
       >
-        <Text style={{ color: COLORS.white }}>{text}</Text>
+        <Text style={{ color: COLORS.white, ...FONTS.label }}>{text}</Text>
       </View>
     </View>
   );
