@@ -68,7 +68,7 @@ const Onboarding = ({ navigation }: AuthNavigationProps<"Onboarding">) => {
         <View style={styles.footerContent}>
           <View style={styles.pagination}>
             {slides.map((_, index) => (
-              <Dot key={index} currentIndex={currentIndex} {...{ index }} />
+              <Dot key={index} {...{ index, currentIndex }} />
             ))}
           </View>
           <Animated.View
