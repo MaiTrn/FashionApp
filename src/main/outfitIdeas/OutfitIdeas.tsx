@@ -21,7 +21,10 @@ const OutfitIdeas = ({ navigation }: HomeNavigationProps<"OutfitIdeas">) => {
     <View style={{ flex: 1, backgroundColor: COLORS.white }}>
       <Header
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
-        right={{ icon: "shopping-outline", onPress: () => console.log("left") }}
+        right={{
+          icon: "shopping-outline",
+          onPress: () => navigation.navigate("Cart"),
+        }}
         label="Outfit Ideas"
       />
       {/* <Categories /> */}

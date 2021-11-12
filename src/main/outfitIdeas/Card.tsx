@@ -4,13 +4,14 @@ import { PanGestureHandler } from "react-native-gesture-handler";
 import Animated, {
   Extrapolate,
   interpolate,
+  runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
-import { mixColor, snapPoint } from "react-native-redash";
+import { mix, mixColor, snapPoint } from "react-native-redash";
 
 import { SIZES } from "../../../constants";
 
@@ -34,12 +35,12 @@ const Card = ({ index, aIndex, step, source, onSwipe }: CardProps) => {
   const translateX = useSharedValue(0);
   const translateY = useSharedValue(0);
   const position = useDerivedValue(() => index * step - aIndex.value);
-  // const translateYOffset= mix(position.value, 0, -50);
+  const translateYOffset = mix(position.value, 0, -50);
 
   const onGestureEvent = useAnimatedGestureHandler<gestureHandlerProps>({
     onStart: (_, ctx) => {
       ctx.x = translateX.value;
-      ctx.y = translateY.value;
+      ctx.y = translateY.value + translateYOffset;
     },
     onActive: ({ translationX, translationY }, ctx) => {
       translateX.value = translationX + ctx.x;
@@ -57,7 +58,7 @@ const Card = ({ index, aIndex, step, source, onSwipe }: CardProps) => {
           restSpeedThreshold: dest === 0 ? 0.01 : 100,
           restDisplacementThreshold: dest === 0 ? 0.01 : 100,
         },
-        () => dest !== 0 && console.log("onSwipe")
+        () => dest !== 0 && runOnJS(onSwipe)()
       );
     },
   });
@@ -68,20 +69,20 @@ const Card = ({ index, aIndex, step, source, onSwipe }: CardProps) => {
         scale: interpolate(
           position.value,
           [0, step],
-          [1, 0.8],
+          [1, 0.9],
           Extrapolate.CLAMP
         ),
       },
     ],
   }));
   const cardStyle = useAnimatedStyle(() => {
-    // const scale = mix(position.value, 1, 0.8);
+    const scale = mix(position.value, 1, 0.8);
 
     return {
       transform: [
         { translateY: translateY.value },
         { translateX: translateX.value },
-        // { scale },
+        { scale },
       ],
       backgroundColor: mixColor(position.value, "#C9E9E7", "#74BCB8"),
     };
@@ -116,7 +117,7 @@ const Card = ({ index, aIndex, step, source, onSwipe }: CardProps) => {
                 height: undefined,
                 width: undefined,
               },
-              //imageStyle,
+              imageStyle,
             ]}
           />
         </Animated.View>

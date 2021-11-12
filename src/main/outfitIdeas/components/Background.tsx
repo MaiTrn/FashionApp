@@ -32,7 +32,8 @@ const Background = () => {
           viewBox={[0, 0, viewBox.width, viewBox.height].join(" ")}
           style={{
             position: "absolute",
-            top: 0,
+            top: -5,
+            left: -1,
             right: 0,
             zIndex: 10,
           }}
