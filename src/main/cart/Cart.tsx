@@ -23,7 +23,7 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
   const totalPrice = items.reduce(totalValue, 0);
 
   return (
-    <CartContainer CheckoutComponent={Checkout} totalPrice={totalPrice}>
+    <CartContainer CheckoutComponent={Checkout} totalPrice={totalPrice} onEnd={() =>navigation.navigate("PurchaseConfirmed")}>
       <View
         style={{
           backgroundColor: COLORS.primary,
@@ -38,10 +38,6 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
           left={{
             icon: "arrow-left",
             onPress: () => navigation.goBack(),
-          }}
-          right={{
-            icon: "shopping-outline",
-            onPress: () => true,
           }}
           label="shopping cart"
           contentColor={COLORS.white}
@@ -111,7 +107,7 @@ const Cart = ({ navigation }: HomeNavigationProps<"Cart">) => {
               {...item}
               onDelete={() => {
                 items.splice(index, 1);
-                setItems(items.concat());
+                return setItems(items);
               }}
             />
           ))}

@@ -12,8 +12,13 @@ import { COLORS, SIZES } from "../../../constants";
 
 interface CartContainerProps {
   children: ReactNode;
-  CheckoutComponent: FC<{ minHeight: number; totalPrice: number }>;
+  CheckoutComponent: FC<{
+    minHeight: number;
+    totalPrice: number;
+    onEnd: () => void;
+  }>;
   totalPrice: number;
+  onEnd: () => void;
 }
 
 const height = (680 * SIZES.width) / 375;
@@ -25,6 +30,7 @@ const CartContainer = ({
   children,
   CheckoutComponent,
   totalPrice,
+  onEnd,
 }: CartContainerProps) => {
   const translateY = useSharedValue(0);
   const onGestureEvent = useAnimatedGestureHandler<{ y: number }>({
@@ -50,7 +56,11 @@ const CartContainer = ({
 
   return (
     <View style={{ flex: 1 }}>
-      <CheckoutComponent minHeight={minHeight} totalPrice={totalPrice} />
+      <CheckoutComponent
+        minHeight={minHeight}
+        totalPrice={totalPrice}
+        onEnd={onEnd}
+      />
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View
           style={[

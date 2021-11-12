@@ -61,7 +61,7 @@ const SwipeableRow = ({
           if (dest === finalDest && isFinished) {
             height.value = withTiming(0, { duration: 250 }, (isFinished) => {
               if (isFinished) {
-                //  runOnJS(deleteItem)();
+                runOnJS(deleteItem)();
               }
             });
           }
