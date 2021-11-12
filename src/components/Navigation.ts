@@ -14,6 +14,14 @@ export interface HomeNavigationProps<RouteName extends keyof HomeRoutes> {
   navigation: DrawerNavigationProp<HomeRoutes, RouteName>;
   route: RouteProp<HomeRoutes, RouteName>;
 }
+export interface ProfileNavigationProps<RouteName extends keyof ProfileRoutes> {
+  navigation: DrawerNavigationProp<ProfileRoutes, RouteName>;
+  route: RouteProp<ProfileRoutes, RouteName>;
+}
+export interface CartNavigationProps<RouteName extends keyof CartRoutes> {
+  navigation: DrawerNavigationProp<CartRoutes, RouteName>;
+  route: RouteProp<CartRoutes, RouteName>;
+}
 
 export type AppRoutes = {
   Authentication: undefined;
@@ -37,6 +45,15 @@ export type HomeRoutes = {
   TransactionHistory: undefined;
   NotificationsSettings: undefined;
   Cart: undefined;
-  ProfileSaved: undefined;
   PurchaseConfirmed: undefined;
+};
+
+export type ProfileRoutes = {
+  MainScreen: undefined;
+  ProfileSavedScreen: undefined;
+};
+
+export type CartRoutes = {
+  MainScreen: undefined;
+  PurchaseConfirmedScreen: undefined;
 };

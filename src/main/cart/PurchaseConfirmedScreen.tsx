@@ -1,17 +1,20 @@
+import { CommonActions } from "@react-navigation/routers";
 import React from "react";
 import { View, Text } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { COLORS, SIZES, FONTS } from "../../../constants";
-import { HomeNavigationProps } from "../../components/Navigation";
 import { Container, Button } from "../../components";
 import Footer from "../../components/Footer";
+import { CartNavigationProps } from "../../components/Navigation";
 
-const ProfileSaved = ({ navigation }: HomeNavigationProps<"ProfileSaved">) => {
+const PurchaseConfirmedScreen = ({
+  navigation,
+}: CartNavigationProps<"PurchaseConfirmedScreen">) => {
   return (
     <Container
       pattern={3}
-      footer={<Footer onPress={() => navigation.navigate("EditProfile")} />}
+      footer={<Footer onPress={() => navigation.navigate("MainScreen")} />}
     >
       <View
         style={{
@@ -45,7 +48,7 @@ const ProfileSaved = ({ navigation }: HomeNavigationProps<"ProfileSaved">) => {
           ...FONTS.h1,
         }}
       >
-        Your information was successfully saved
+        Purchase confirmed
       </Text>
       <Text
         style={{
@@ -67,11 +70,15 @@ const ProfileSaved = ({ navigation }: HomeNavigationProps<"ProfileSaved">) => {
         <Button
           label="Go back to home screen"
           variant="primary"
-          onPress={() => navigation.navigate("OutfitIdeas")}
+          onPress={() =>
+            navigation.dispatch(
+              CommonActions.reset({ index: 0, routes: [{ name: "Home" }] })
+            )
+          }
         />
       </View>
     </Container>
   );
 };
 
-export default ProfileSaved;
+export default PurchaseConfirmedScreen;

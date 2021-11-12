@@ -21,8 +21,8 @@ const endPoint = 280 - 52; //total with of view - size of icon - margin
 const Slider = ({ onEnd, text }: sliderProps) => {
   const translateX = useSharedValue(0);
   const onSave = useCallback(() => {
-    translateX.value = 0;
     onEnd();
+    translateX.value = 0;
   }, [onEnd]);
 
   const onGestureEvent = useAnimatedGestureHandler<{ x: number }>({
